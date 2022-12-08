@@ -81,7 +81,10 @@
     ground.material.diffuseTexture = groundTexture;
 
     BABYLON.SceneLoader.ImportMesh("", "https://milad0647.github.io/Babylon/", "sphere.glb", scene, function(newMeshes){
-    newMeshes[0].scaling = new BABYLON.Vector3(300, 300, 200);
+    newMeshes[0].scaling = new BABYLON.Vector3(100, 100, 100);
+    newMeshes[0].position.x = -3;
+    newMeshes[0].position.y = 1;
+
     });
 
     return scene;
