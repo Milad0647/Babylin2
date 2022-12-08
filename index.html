@@ -67,18 +67,25 @@
         
             // This attaches the camera to the canvas
             camera.attachControl(canvas, true);
-        
+            var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 1, 0), scene);
+            light.intensity = 0.7;
+
             // Our built-in 'sphere' shape.
             var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
             var sphere2 = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
             var sphere3 = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter: 2, segments: 32}, scene);
-            var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("/textures/environment.dds", scene);
-            var skybox = scene.createDefaultSkybox(hdrTexture, true, 10000);
+            //var hdrTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("/textures/environment.dds", scene);
+            //var skybox = scene.createDefaultSkybox(hdrTexture, true, 10000);
         
+            BABYLON.SceneLoader.ImportMesh("aad", "https://milad0647.github.io/Babylon/", "a.glb", scene, function(newMeshes){
+        newMeshes[0].scaling = new BABYLON.Vector3(3, 3, 3);
+        newMeshes[0].position.y = -2;
+        });
+
             var probe = new BABYLON.ReflectionProbe("main", 512, scene);
             probe.renderList.push(sphere2);
             probe.renderList.push(sphere3);
-            probe.renderList.push(skybox);
+           // probe.renderList.push(skybox);
         
             // Move the sphere upward 1/2 its height
         
